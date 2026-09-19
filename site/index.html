@@ -1,0 +1,5451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>
+StudyNest | Sunny Gupta from IITM
+</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:#fffaf0;
+
+    color:#222;
+
+    overflow-x:hidden;
+}
+
+:root{
+
+    --yellow:#ffd43b;
+    --dark-yellow:#e4aa00;
+    --red:#ff5959;
+    --green:#35b970;
+    --blue:#4d96ff;
+    --dark:#222;
+
+    --shadow:
+        0 10px 28px
+        rgba(0,0,0,.11);
+
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:9999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    padding:12px 22px;
+
+    background:
+        rgba(255,255,255,.96);
+
+    backdrop-filter:
+        blur(10px);
+
+    border-bottom:
+        3px solid var(--yellow);
+
+}
+
+.logo{
+
+    font-size:27px;
+
+    font-weight:900;
+
+}
+
+.logo span{
+
+    color:
+        var(--dark-yellow);
+
+}
+
+.navlinks{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:7px;
+
+}
+
+.navlinks a{
+
+    text-decoration:none;
+
+    color:#222;
+
+    font-weight:800;
+
+    font-size:13px;
+
+    padding:8px 12px;
+
+    border-radius:20px;
+
+    transition:.25s;
+
+}
+
+.navlinks a:hover{
+
+    background:
+        var(--yellow);
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    min-height:500px;
+
+    padding:
+        65px 7%;
+
+    display:flex;
+
+    align-items:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 90% 18%,
+            #ffe66d 0 90px,
+            transparent 91px
+        ),
+
+        linear-gradient(
+            135deg,
+            #fff8c9,
+            #fff,
+            #fff0a0
+        );
+
+}
+
+.hero-content{
+
+    max-width:720px;
+
+    position:relative;
+
+    z-index:10;
+
+}
+
+.hero h1{
+
+    font-size:
+        clamp(42px,7vw,80px);
+
+    line-height:.98;
+
+}
+
+.hero h1 span{
+
+    color:
+        var(--dark-yellow);
+
+}
+
+.hero p{
+
+    margin-top:20px;
+
+    font-size:19px;
+
+    line-height:1.6;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-top:25px;
+
+}
+
+.btn{
+
+    border:0;
+
+    cursor:pointer;
+
+    padding:
+        13px 20px;
+
+    border-radius:30px;
+
+    font-weight:800;
+
+    transition:.25s;
+
+}
+
+.btn:hover{
+
+    transform:
+        translateY(-3px);
+
+}
+
+.btn-dark{
+
+    background:#222;
+
+    color:#fff;
+
+}
+
+.btn-yellow{
+
+    background:
+        var(--yellow);
+
+    color:#222;
+
+}
+
+.btn-red{
+
+    background:
+        var(--red);
+
+    color:#fff;
+
+}
+
+.float{
+
+    position:absolute;
+
+    font-size:56px;
+
+    pointer-events:none;
+
+    animation:
+        floatAnimation 5s ease-in-out infinite;
+
+}
+
+.f1{
+    right:14%;
+    top:15%;
+}
+
+.f2{
+    right:5%;
+    bottom:18%;
+    animation-delay:1s;
+}
+
+.f3{
+    right:30%;
+    bottom:8%;
+    animation-delay:2s;
+}
+
+.f4{
+    left:55%;
+    top:10%;
+    animation-delay:1.5s;
+}
+
+@keyframes floatAnimation{
+
+    0%,100%{
+        transform:
+            translateY(0)
+            rotate(-4deg);
+    }
+
+    50%{
+        transform:
+            translateY(-24px)
+            rotate(5deg);
+    }
+
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.section{
+
+    padding:
+        58px 5%;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.section:nth-child(even){
+
+    background:#fff;
+
+}
+
+.section-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+.section-title{
+
+    font-size:34px;
+
+    font-weight:900;
+
+}
+
+.section-sub{
+
+    margin-top:6px;
+
+    color:#777;
+
+}
+
+.swipe{
+
+    font-size:12px;
+
+    font-weight:800;
+
+    padding:8px 12px;
+
+    border-radius:20px;
+
+    background:
+        #fff1a5;
+
+    white-space:nowrap;
+
+}
+
+
+/* =====================================================
+   HORIZONTAL
+===================================================== */
+
+.row{
+
+    display:flex;
+
+    gap:20px;
+
+    overflow-x:auto;
+
+    padding:
+        10px
+        6px
+        24px;
+
+    scroll-snap-type:
+        x mandatory;
+
+}
+
+.row::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+.row::-webkit-scrollbar-thumb{
+
+    background:
+        #dfb000;
+
+    border-radius:20px;
+
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.card{
+
+    flex:
+        0 0 300px;
+
+    min-height:
+        215px;
+
+    background:#fff;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:
+        var(--shadow);
+
+    border:
+        2px solid transparent;
+
+    scroll-snap-align:
+        start;
+
+    cursor:pointer;
+
+    position:relative;
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        var(--yellow);
+
+}
+
+.card-top{
+
+    height:110px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:56px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe36c,
+            #fff2ad
+        );
+
+}
+
+.card-body{
+
+    padding:17px;
+
+}
+
+.card-body h3{
+
+    font-size:20px;
+
+    margin-bottom:7px;
+
+}
+
+.card-body p{
+
+    color:#666;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+}
+
+.meta{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:7px;
+
+    margin-top:10px;
+
+}
+
+.badge{
+
+    padding:
+        5px 9px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+.yellow-badge{
+    background:#fff0a3;
+}
+
+.red-badge{
+    background:#ffd4d4;
+}
+
+.green-badge{
+    background:#cef3da;
+}
+
+.blue-badge{
+    background:#dceaff;
+}
+
+.empty{
+
+    flex:
+        0 0 100%;
+
+    background:#fff;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    box-shadow:
+        var(--shadow);
+
+    text-align:center;
+
+    color:#777;
+
+}
+
+
+/* =====================================================
+   PDF
+===================================================== */
+
+#pdfSection{
+
+    background:
+
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(255,215,50,.26),
+            transparent 120px
+        ),
+
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(77,150,255,.16),
+            transparent 150px
+        ),
+
+        #fffdf4;
+
+}
+
+.open-pdf{
+
+    position:absolute;
+
+    right:12px;
+
+    top:12px;
+
+    z-index:2;
+
+    background:#222;
+
+    color:#fff;
+
+    padding:7px 10px;
+
+    border-radius:18px;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
+.play{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    background:#ff4e4e;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:28px;
+
+}
+
+
+/* =====================================================
+   CARTOONS
+===================================================== */
+
+.cartoon-area{
+
+    height:140px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    margin-bottom:6px;
+
+}
+
+.character{
+
+    position:absolute;
+
+    left:-100px;
+
+    bottom:10px;
+
+    width:70px;
+
+    height:95px;
+
+    animation:
+        walk 12s linear infinite;
+
+}
+
+.character:nth-child(2){
+
+    animation-duration:15s;
+
+    animation-delay:2s;
+
+}
+
+.character:nth-child(3){
+
+    animation-duration:10s;
+
+    animation-delay:5s;
+
+}
+
+.character:nth-child(4){
+
+    animation-duration:17s;
+
+    animation-delay:1s;
+
+}
+
+.chead{
+
+    position:absolute;
+
+    left:10px;
+
+    top:0;
+
+    width:48px;
+
+    height:48px;
+
+    background:
+        #ffd39d;
+
+    border:
+        3px solid #222;
+
+    border-radius:50%;
+
+}
+
+.eye{
+
+    position:absolute;
+
+    top:16px;
+
+    width:6px;
+
+    height:6px;
+
+    background:#222;
+
+    border-radius:50%;
+
+}
+
+.eye1{
+    left:9px;
+}
+
+.eye2{
+    right:9px;
+}
+
+.cbody{
+
+    position:absolute;
+
+    left:11px;
+
+    top:46px;
+
+    width:47px;
+
+    height:43px;
+
+    background:
+        #ffd029;
+
+    border:
+        3px solid #222;
+
+    border-radius:14px;
+
+}
+
+.character:nth-child(2) .cbody{
+    background:#4d9fff;
+}
+
+.character:nth-child(3) .cbody{
+    background:#ff6262;
+}
+
+.character:nth-child(4) .cbody{
+    background:#35bf74;
+}
+
+.leg{
+
+    position:absolute;
+
+    top:79px;
+
+    width:9px;
+
+    height:26px;
+
+    background:#222;
+
+    border-radius:10px;
+
+}
+
+.leg1{
+    left:22px;
+}
+
+.leg2{
+    left:42px;
+}
+
+@keyframes walk{
+
+    0%{
+
+        left:-100px;
+
+        transform:
+            translateY(10px);
+
+    }
+
+    50%{
+
+        transform:
+            translateY(-8px);
+
+    }
+
+    100%{
+
+        left:
+            calc(100% + 100px);
+
+        transform:
+            translateY(10px);
+
+    }
+
+}
+
+
+/* =====================================================
+   TOPPER
+===================================================== */
+
+.topper-photo{
+
+    width:80px;
+
+    height:80px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:
+        4px solid #fff;
+
+}
+
+
+/* =====================================================
+   ABOUT / FOOTER
+===================================================== */
+
+.about-box{
+
+    background:#fff;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    box-shadow:
+        var(--shadow);
+
+    line-height:1.7;
+
+}
+
+.about-box strong{
+    color:
+        var(--dark-yellow);
+}
+
+footer{
+
+    background:#222;
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:35px 20px;
+
+}
+
+footer span{
+
+    color:
+        var(--yellow);
+
+}
+
+.admin-link{
+
+    display:inline-block;
+
+    margin-top:14px;
+
+    color:#aaa;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+}
+
+.admin-link:hover{
+
+    color:
+        var(--yellow);
+
+}
+
+
+/* =====================================================
+   MODALS
+===================================================== */
+
+.modal,
+.login-overlay{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:10000;
+
+    background:
+        rgba(0,0,0,.78);
+
+    padding:20px;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.modal.active,
+.login-overlay.active{
+
+    display:flex;
+
+}
+
+.modal-box,
+.login-box{
+
+    width:
+        min(1000px,100%);
+
+    max-height:92vh;
+
+    overflow:auto;
+
+    background:#fff;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    position:relative;
+
+}
+
+.login-box{
+
+    width:
+        min(420px,100%);
+
+}
+
+.close{
+
+    position:absolute;
+
+    right:12px;
+
+    top:12px;
+
+    width:40px;
+
+    height:40px;
+
+    background:#222;
+
+    color:#fff;
+
+    border:0;
+
+    border-radius:50%;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+}
+
+.pdf-frame{
+
+    width:100%;
+
+    height:72vh;
+
+    border:0;
+
+    border-radius:12px;
+
+}
+
+.input{
+
+    width:100%;
+
+    padding:13px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    margin:10px 0;
+
+}
+
+
+/* =====================================================
+   ADMIN
+===================================================== */
+
+#adminPanel{
+
+    display:none;
+
+    min-height:100vh;
+
+    background:#f5f5f5;
+
+    padding:35px 5%;
+
+}
+
+.admin-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+.admin-header h1{
+
+    font-size:32px;
+
+}
+
+.admin-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(300px,1fr)
+        );
+
+    gap:20px;
+
+}
+
+.admin-box{
+
+    background:#fff;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    box-shadow:
+        var(--shadow);
+
+}
+
+.admin-box h3{
+
+    margin-bottom:15px;
+
+}
+
+.admin-input,
+.admin-select,
+.admin-textarea{
+
+    width:100%;
+
+    padding:11px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    margin-bottom:9px;
+
+}
+
+.admin-textarea{
+
+    min-height:80px;
+
+    resize:vertical;
+
+}
+
+.admin-list{
+
+    margin-top:15px;
+
+}
+
+.admin-item{
+
+    background:#f7f7f7;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    margin-bottom:9px;
+
+}
+
+.admin-item strong{
+
+    display:block;
+
+    margin-bottom:6px;
+
+}
+
+.admin-item small{
+
+    display:block;
+
+    color:#777;
+
+    line-height:1.4;
+
+    margin-bottom:8px;
+
+}
+
+.actions{
+
+    display:flex;
+
+    gap:7px;
+
+    flex-wrap:wrap;
+
+}
+
+.small{
+
+    border:0;
+
+    padding:7px 10px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:800;
+
+    font-size:12px;
+
+}
+
+.edit{
+
+    background:#ffe27a;
+
+}
+
+.delete{
+
+    background:#ff6767;
+
+    color:#fff;
+
+}
+
+.refresh{
+
+    background:#dceaff;
+
+}
+
+.divider{
+
+    border:0;
+
+    border-top:1px solid #eee;
+
+    margin:18px 0;
+
+}
+
+.status{
+
+    margin-top:10px;
+
+    font-size:13px;
+
+    color:#555;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px){
+
+    .navbar{
+
+        flex-direction:column;
+
+    }
+
+    .section-head{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .section-title{
+
+        font-size:28px;
+
+    }
+
+    .card{
+
+        flex-basis:82vw;
+
+    }
+
+    .admin-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div id="mainWebsite">
+
+
+<nav class="navbar">
+
+    <div class="logo">
+        Study<span>Nest</span>
+    </div>
+
+    <div class="navlinks">
+
+        <a href="#home">Home</a>
+
+        <a href="#coursesSection">
+            Courses
+        </a>
+
+        <a href="#videoSection">
+            Videos
+        </a>
+
+        <a href="#pdfSection">
+            PDFs
+        </a>
+
+        <a href="#topperSection">
+            Toppers
+        </a>
+
+        <a href="#aboutSection">
+            About
+        </a>
+
+    </div>
+
+</nav>
+
+
+<section
+    class="hero"
+    id="home">
+
+    <div class="hero-content">
+
+        <h1>
+
+            Learn.<br>
+
+            <span>
+                Grow.
+            </span><br>
+
+            Achieve.
+
+        </h1>
+
+        <p>
+
+            Welcome to
+            <strong>
+                StudyNest
+            </strong> —
+            your organized learning
+            space for courses, videos,
+            PDFs and achievements.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                class="btn btn-dark"
+                href="#coursesSection">
+
+                📚 Explore Courses
+
+            </a>
+
+            <a
+                class="btn btn-yellow"
+                href="#pdfSection">
+
+                📕 Open PDFs
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="float f1">📚</div>
+    <div class="float f2">🎓</div>
+    <div class="float f3">✏️</div>
+    <div class="float f4">⭐</div>
+
+</section>
+
+
+<section
+    class="section"
+    id="coursesSection">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="section-title">
+                📚 Courses
+            </div>
+
+            <div class="section-sub">
+                All available courses
+            </div>
+
+        </div>
+
+        <div class="swipe">
+            Swipe → to see more
+        </div>
+
+    </div>
+
+    <div
+        class="row"
+        id="coursesHome">
+
+        <div class="empty">
+            Loading courses...
+        </div>
+
+    </div>
+
+</section>
+
+
+<section
+    class="section"
+    id="videoSection">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="section-title">
+                🎬 Videos
+            </div>
+
+            <div class="section-sub">
+                Your YouTube study lessons
+            </div>
+
+        </div>
+
+        <div class="swipe">
+            Swipe → to see more
+        </div>
+
+    </div>
+
+    <div
+        class="row"
+        id="videosHome">
+
+        <div class="empty">
+            Loading videos...
+        </div>
+
+    </div>
+
+</section>
+
+
+<section
+    class="section"
+    id="pdfSection">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="section-title">
+                📕 Study PDFs
+            </div>
+
+            <div class="section-sub">
+                Tap a PDF to open it
+            </div>
+
+        </div>
+
+        <div class="swipe">
+            Swipe → to see more
+        </div>
+
+    </div>
+
+
+    <div class="cartoon-area">
+
+        <div class="character">
+
+            <div class="chead">
+                <span class="eye eye1"></span>
+                <span class="eye eye2"></span>
+            </div>
+
+            <div class="cbody"></div>
+
+            <div class="leg leg1"></div>
+            <div class="leg leg2"></div>
+
+        </div>
+
+
+        <div class="character">
+
+            <div class="chead">
+                <span class="eye eye1"></span>
+                <span class="eye eye2"></span>
+            </div>
+
+            <div class="cbody"></div>
+
+            <div class="leg leg1"></div>
+            <div class="leg leg2"></div>
+
+        </div>
+
+
+        <div class="character">
+
+            <div class="chead">
+                <span class="eye eye1"></span>
+                <span class="eye eye2"></span>
+            </div>
+
+            <div class="cbody"></div>
+
+            <div class="leg leg1"></div>
+            <div class="leg leg2"></div>
+
+        </div>
+
+
+        <div class="character">
+
+            <div class="chead">
+                <span class="eye eye1"></span>
+                <span class="eye eye2"></span>
+            </div>
+
+            <div class="cbody"></div>
+
+            <div class="leg leg1"></div>
+            <div class="leg leg2"></div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="row"
+        id="pdfsHome">
+
+        <div class="empty">
+            Loading PDFs...
+        </div>
+
+    </div>
+
+</section>
+
+
+<section
+    class="section"
+    id="topperSection">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="section-title">
+                🏆 Toppers
+            </div>
+
+            <div class="section-sub">
+                Student achievements
+            </div>
+
+        </div>
+
+        <div class="swipe">
+            Swipe → to see more
+        </div>
+
+    </div>
+
+    <div
+        class="row"
+        id="toppersHome">
+
+        <div class="empty">
+            Loading toppers...
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="section-title">
+                ✨ Latest Content
+            </div>
+
+            <div class="section-sub">
+                Recently added material
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        class="row"
+        id="latestHome">
+
+        <div class="empty">
+            Loading...
+        </div>
+
+    </div>
+
+</section>
+
+
+<section
+    class="section"
+    id="aboutSection">
+
+    <div class="about-box">
+
+        <h2>
+            About StudyNest
+        </h2>
+
+        <br>
+
+        <p>
+
+            <strong>
+                StudyNest
+            </strong>
+
+            is a learning platform
+            created by
+
+            <strong>
+                Sunny Gupta from IITM
+            </strong>.
+
+        </p>
+
+        <br>
+
+        <p>
+
+            Courses, videos, PDFs and
+            topper achievements are
+            organized in one place.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    StudyNest © 2026
+
+    <br>
+
+    Made by
+    <span>
+        Sunny Gupta from IITM
+    </span>
+
+    <br>
+
+    <span
+        class="admin-link"
+        onclick="openLogin()">
+
+        🔐 Admin Login
+
+    </span>
+
+</footer>
+
+</div>
+
+
+<!-- PDF MODAL -->
+
+<div
+    class="modal"
+    id="pdfModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closePDF()">
+            ×
+        </button>
+
+        <h2
+            id="pdfTitle">
+            PDF
+        </h2>
+
+        <br>
+
+        <iframe
+            id="pdfViewer"
+            class="pdf-frame">
+        </iframe>
+
+    </div>
+
+</div>
+
+
+<!-- VIDEO MODAL -->
+
+<div
+    class="modal"
+    id="videoModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeVideo()">
+            ×
+        </button>
+
+        <h2
+            id="videoTitleModal">
+            Video
+        </h2>
+
+        <br>
+
+        <iframe
+            id="videoViewer"
+            style="
+                width:100%;
+                height:70vh;
+                border:0;
+                border-radius:15px;
+            "
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+</div>
+
+
+<!-- TOPPER MODAL -->
+
+<div
+    class="modal"
+    id="topperModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeTopper()">
+            ×
+        </button>
+
+        <div
+            id="topperModalBody"
+            style="text-align:center">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- LOGIN -->
+
+<div
+    class="login-overlay"
+    id="loginOverlay">
+
+    <div class="login-box">
+
+        <h2>
+            🔐 Admin Login
+        </h2>
+
+        <p
+            style="
+                color:#777;
+                margin-top:7px;
+            ">
+
+            Private StudyNest administration.
+
+        </p>
+
+        <input
+            class="input"
+            type="password"
+            id="adminPassword"
+            placeholder="Enter admin password">
+
+        <button
+            class="btn btn-dark"
+            style="width:100%"
+            onclick="loginAdmin()">
+
+            Login
+
+        </button>
+
+        <div
+            id="loginError"
+            style="
+                color:#d33;
+                font-size:13px;
+                margin-top:8px;
+            ">
+        </div>
+
+        <button
+            class="btn"
+            style="
+                width:100%;
+                background:#eee;
+                margin-top:10px;
+            "
+            onclick="closeLogin()">
+
+            Cancel
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ADMIN -->
+
+<section id="adminPanel">
+
+    <div class="admin-header">
+
+        <div>
+
+            <h1>
+                ⚙️ StudyNest Admin
+            </h1>
+
+            <p
+                style="
+                    color:#777;
+                    margin-top:5px;
+                ">
+
+                Manage courses, PDFs,
+                YouTube videos and toppers.
+
+            </p>
+
+        </div>
+
+        <button
+            class="btn btn-dark"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+
+    <div class="admin-grid">
+
+
+        <!-- COURSE -->
+
+        <div class="admin-box">
+
+            <h3>
+                📚 Add Course
+            </h3>
+
+            <input
+                class="admin-input"
+                id="courseName"
+                placeholder="Course name">
+
+            <input
+                class="admin-input"
+                id="courseIcon"
+                placeholder="Icon e.g. 📘">
+
+            <textarea
+                class="admin-textarea"
+                id="courseDescription"
+                placeholder="Description">
+            </textarea>
+
+            <button
+                class="btn btn-yellow"
+                onclick="addCourse()">
+
+                Add Course
+
+            </button>
+
+            <hr class="divider">
+
+            <div
+                class="admin-list"
+                id="courseList">
+            </div>
+
+        </div>
+
+
+        <!-- VIDEO -->
+
+        <div class="admin-box">
+
+            <h3>
+                🎬 Add YouTube Video
+            </h3>
+
+            <input
+                class="admin-input"
+                id="videoTitle"
+                placeholder="Video title">
+
+            <input
+                class="admin-input"
+                id="videoURL"
+                placeholder="Paste YouTube link">
+
+            <select
+                class="admin-select"
+                id="videoCourse">
+
+                <option value="">
+                    -- Select Course --
+                </option>
+
+            </select>
+
+            <button
+                class="small refresh"
+                onclick="loadCourseSelects()">
+
+                🔄 Refresh Courses
+
+            </button>
+
+            <br><br>
+
+            <input
+                class="admin-input"
+                id="videoSubject"
+                placeholder="Subject">
+
+            <input
+                class="admin-input"
+                id="videoChapter"
+                placeholder="Chapter">
+
+            <input
+                class="admin-input"
+                id="videoDate"
+                type="date">
+
+            <button
+                class="btn btn-yellow"
+                onclick="addVideo()">
+
+                Add Video
+
+            </button>
+
+            <hr class="divider">
+
+            <div
+                class="admin-list"
+                id="videoList">
+            </div>
+
+        </div>
+
+
+        <!-- PDF -->
+
+        <div class="admin-box">
+
+            <h3>
+                📕 Add PDF
+            </h3>
+
+            <input
+                class="admin-input"
+                type="file"
+                id="pdfFiles"
+                accept=".pdf,application/pdf"
+                multiple>
+
+            <p
+                style="
+                    color:#777;
+                    font-size:12px;
+                    line-height:1.5;
+                    margin-bottom:10px;
+                ">
+
+                Select multiple PDFs.
+                Maximum 4 MB per PDF.
+
+            </p>
+
+            <select
+                class="admin-select"
+                id="pdfCourse">
+
+                <option value="">
+                    -- Select Course --
+                </option>
+
+            </select>
+
+            <button
+                class="small refresh"
+                onclick="loadCourseSelects()">
+
+                🔄 Refresh Courses
+
+            </button>
+
+            <br><br>
+
+            <input
+                class="admin-input"
+                id="pdfSubject"
+                placeholder="Subject">
+
+            <input
+                class="admin-input"
+                id="pdfChapter"
+                placeholder="Chapter">
+
+            <input
+                class="admin-input"
+                type="date"
+                id="pdfDate">
+
+            <button
+                class="btn btn-yellow"
+                onclick="uploadPDFs()">
+
+                📤 Upload PDF(s)
+
+            </button>
+
+            <div
+                class="status"
+                id="pdfStatus">
+            </div>
+
+            <hr class="divider">
+
+            <div
+                class="admin-list"
+                id="pdfList">
+            </div>
+
+        </div>
+
+
+        <!-- TOPPER -->
+
+        <div class="admin-box">
+
+            <h3>
+                🏆 Add Topper
+            </h3>
+
+            <input
+                class="admin-input"
+                id="topperName"
+                placeholder="Student name">
+
+            <input
+                class="admin-input"
+                id="topperMarks"
+                placeholder="Marks / percentage">
+
+            <input
+                class="admin-input"
+                type="date"
+                id="topperDate">
+
+            <input
+                class="admin-input"
+                type="file"
+                id="topperPhoto"
+                accept="image/*">
+
+            <button
+                class="btn btn-yellow"
+                onclick="addTopper()">
+
+                Add Topper
+
+            </button>
+
+            <hr class="divider">
+
+            <div
+                class="admin-list"
+                id="topperList">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   IMPORTANT CONFIGURATION
+===================================================== */
+
+/*
+  CHANGE THESE TWO VALUES
+  TO YOUR GITHUB ACCOUNT.
+*/
+
+const GITHUB_USERNAME =
+    "YOUR_GITHUB_USERNAME";
+
+const GITHUB_REPOSITORY =
+    "YOUR_REPOSITORY_NAME";
+
+const GITHUB_BRANCH =
+    "main";
+
+
+/*
+  Public files live here.
+
+  Example after replacement:
+
+  https://raw.githubusercontent.com/
+  sunnygupta/StudyNest/main/site
+*/
+
+const RAW_BASE =
+    `https://raw.githubusercontent.com/` +
+    `${GITHUB_USERNAME}/` +
+    `${GITHUB_REPOSITORY}/` +
+    `${GITHUB_BRANCH}/site`;
+
+
+const ADMIN_API =
+    "/.netlify/functions/admin";
+
+
+let data = {
+
+    courses:[],
+    videos:[],
+    pdfs:[],
+    toppers:[]
+
+};
+
+
+let adminPassword = "";
+
+
+/* =====================================================
+   API
+===================================================== */
+
+async function apiRequest(payload){
+
+    const response =
+        await fetch(
+            ADMIN_API,
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":
+                        "application/json"
+                },
+                body:
+                    JSON.stringify(payload)
+            }
+        );
+
+
+    let result;
+
+    try{
+
+        result =
+            await response.json();
+
+    }
+    catch{
+
+        throw new Error(
+            "Invalid server response."
+        );
+
+    }
+
+
+    if(!response.ok || !result.ok){
+
+        throw new Error(
+            result.error ||
+            "Request failed."
+        );
+
+    }
+
+
+    return result;
+
+}
+
+
+/* =====================================================
+   LOAD PUBLIC DATA
+===================================================== */
+
+async function loadData(){
+
+    try{
+
+        const response =
+            await fetch(
+                `${RAW_BASE}/content.json?v=${Date.now()}`,
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "content.json could not be loaded."
+            );
+
+        }
+
+
+        const incoming =
+            await response.json();
+
+
+        data = {
+
+            courses:
+                Array.isArray(
+                    incoming.courses
+                )
+                ?
+                incoming.courses
+                :
+                [],
+
+            videos:
+                Array.isArray(
+                    incoming.videos
+                )
+                ?
+                incoming.videos
+                :
+                [],
+
+            pdfs:
+                Array.isArray(
+                    incoming.pdfs
+                )
+                ?
+                incoming.pdfs
+                :
+                [],
+
+            toppers:
+                Array.isArray(
+                    incoming.toppers
+                )
+                ?
+                incoming.toppers
+                :
+                []
+
+        };
+
+
+        renderHome();
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+
+        /*
+          If config is not replaced yet,
+          show a useful message.
+        */
+
+        document
+            .getElementById(
+                "coursesHome"
+            )
+            .innerHTML = `
+
+                <div class="empty">
+
+                    StudyNest content is not
+                    connected yet.
+
+                    <br><br>
+
+                    Admin needs to configure
+                    the GitHub repository.
+
+                </div>
+
+            `;
+
+    }
+
+}
+
+
+/* =====================================================
+   SAVE DATA
+===================================================== */
+
+async function saveData(){
+
+    await apiRequest({
+
+        action:"saveData",
+
+        password:
+            adminPassword,
+
+        data:data
+
+    });
+
+}
+
+
+/* =====================================================
+   UPLOAD FILE
+===================================================== */
+
+async function uploadFile(
+    file,
+    folder
+){
+
+    if(
+        file.size >
+        4 * 1024 * 1024
+    ){
+
+        throw new Error(
+            "File is larger than 4 MB."
+        );
+
+    }
+
+
+    const buffer =
+        await file.arrayBuffer();
+
+
+    const bytes =
+        new Uint8Array(buffer);
+
+
+    let binary = "";
+
+
+    const chunkSize =
+        0x8000;
+
+
+    for(
+        let i=0;
+        i<bytes.length;
+        i+=chunkSize
+    ){
+
+        binary += String.fromCharCode(
+            ...bytes.subarray(
+                i,
+                Math.min(
+                    i+chunkSize,
+                    bytes.length
+                )
+            )
+        );
+
+    }
+
+
+    const base64 =
+        btoa(binary);
+
+
+    const result =
+        await apiRequest({
+
+            action:
+                "uploadFile",
+
+            password:
+                adminPassword,
+
+            fileName:
+                file.name,
+
+            folder:
+                folder,
+
+            size:
+                file.size,
+
+            contentBase64:
+                base64
+
+        });
+
+
+    return result.path;
+
+}
+
+
+/* =====================================================
+   DELETE REMOTE FILE
+===================================================== */
+
+async function deleteRemoteFile(path){
+
+    if(!path)return;
+
+
+    try{
+
+        await apiRequest({
+
+            action:
+                "deleteFile",
+
+            password:
+                adminPassword,
+
+            path:path
+
+        });
+
+    }
+    catch(error){
+
+        console.error(
+            "Remote delete failed:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function openLogin(){
+
+    document
+        .getElementById(
+            "loginOverlay"
+        )
+        .classList
+        .add("active");
+
+}
+
+
+function closeLogin(){
+
+    document
+        .getElementById(
+            "loginOverlay"
+        )
+        .classList
+        .remove("active");
+
+}
+
+
+async function loginAdmin(){
+
+    const password =
+        document
+            .getElementById(
+                "adminPassword"
+            )
+            .value;
+
+
+    try{
+
+        await apiRequest({
+
+            action:"login",
+
+            password:password
+
+        });
+
+
+        adminPassword =
+            password;
+
+
+        closeLogin();
+
+
+        document
+            .getElementById(
+                "mainWebsite"
+            )
+            .style
+            .display =
+            "none";
+
+
+        document
+            .getElementById(
+                "adminPanel"
+            )
+            .style
+            .display =
+            "block";
+
+
+        await loadData();
+
+        await renderAdmin();
+
+
+    }
+    catch(error){
+
+        document
+            .getElementById(
+                "loginError"
+            )
+            .textContent =
+            "❌ " +
+            error.message;
+
+    }
+
+}
+
+
+function logout(){
+
+    adminPassword = "";
+
+
+    document
+        .getElementById(
+            "adminPanel"
+        )
+        .style
+        .display =
+        "none";
+
+
+    document
+        .getElementById(
+            "mainWebsite"
+        )
+        .style
+        .display =
+        "block";
+
+}
+
+
+/* =====================================================
+   COURSE
+===================================================== */
+
+async function addCourse(){
+
+    const name =
+        document
+            .getElementById(
+                "courseName"
+            )
+            .value
+            .trim();
+
+
+    if(!name){
+
+        alert(
+            "Enter course name."
+        );
+
+        return;
+
+    }
+
+
+    const course = {
+
+        id:
+            Date.now().toString(36),
+
+        name:name,
+
+        icon:
+            document
+                .getElementById(
+                    "courseIcon"
+                )
+                .value
+                .trim()
+            ||
+            "📚",
+
+        description:
+            document
+                .getElementById(
+                    "courseDescription"
+                )
+                .value
+                .trim(),
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    data.courses.push(
+        course
+    );
+
+
+    try{
+
+        await saveData();
+
+
+        document
+            .getElementById(
+                "courseName"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "courseIcon"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "courseDescription"
+            )
+            .value = "";
+
+
+        await renderAdmin();
+
+        renderHome();
+
+
+        alert(
+            "✅ Course added."
+        );
+
+    }
+    catch(error){
+
+        data.courses =
+            data.courses.filter(
+                x => x.id !== course.id
+            );
+
+
+        alert(
+            "Course could not be saved.\n\n" +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   COURSE EDIT
+===================================================== */
+
+async function editCourse(id){
+
+    const item =
+        data.courses.find(
+            x => x.id === id
+        );
+
+
+    if(!item)return;
+
+
+    const name =
+        prompt(
+            "Course name:",
+            item.name
+        );
+
+
+    if(!name)return;
+
+
+    item.name =
+        name.trim();
+
+
+    const description =
+        prompt(
+            "Description:",
+            item.description || ""
+        );
+
+
+    if(
+        description !== null
+    ){
+
+        item.description =
+            description;
+
+    }
+
+
+    try{
+
+        await saveData();
+
+        await renderAdmin();
+
+        renderHome();
+
+    }
+    catch(error){
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+async function deleteCourse(id){
+
+    if(
+        !confirm(
+            "Delete this course?"
+        )
+    )return;
+
+
+    const old =
+        data.courses;
+
+
+    data.courses =
+        data.courses.filter(
+            x => x.id !== id
+        );
+
+
+    try{
+
+        await saveData();
+
+        await renderAdmin();
+
+        renderHome();
+
+    }
+    catch(error){
+
+        data.courses =
+            old;
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   COURSE DROPDOWNS
+===================================================== */
+
+function loadCourseSelects(){
+
+    const videoSelect =
+        document
+            .getElementById(
+                "videoCourse"
+            );
+
+
+    const pdfSelect =
+        document
+            .getElementById(
+                "pdfCourse"
+            );
+
+
+    const html =
+        `
+        <option value="">
+            -- Select Course --
+        </option>
+
+        ` +
+
+        data.courses
+            .map(
+                c =>
+                    `
+                    <option
+                        value="${escapeHtml(c.id)}">
+
+                        ${escapeHtml(
+                            c.icon ||
+                            "📚"
+                        )}
+                        ${escapeHtml(
+                            c.name
+                        )}
+
+                    </option>
+                    `
+            )
+            .join("");
+
+
+    videoSelect.innerHTML =
+        html;
+
+
+    pdfSelect.innerHTML =
+        html;
+
+
+    if(
+        data.courses.length === 1
+    ){
+
+        pdfSelect.value =
+            data.courses[0].id;
+
+    }
+
+}
+
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
+async function addVideo(){
+
+    const title =
+        document
+            .getElementById(
+                "videoTitle"
+            )
+            .value
+            .trim();
+
+
+    const url =
+        document
+            .getElementById(
+                "videoURL"
+            )
+            .value
+            .trim();
+
+
+    const courseId =
+        document
+            .getElementById(
+                "videoCourse"
+            )
+            .value;
+
+
+    if(
+        !title ||
+        !url ||
+        !courseId
+    ){
+
+        alert(
+            "Enter title, YouTube URL and course."
+        );
+
+        return;
+
+    }
+
+
+    const course =
+        data.courses.find(
+            x =>
+                x.id ===
+                courseId
+        );
+
+
+    const video = {
+
+        id:
+            Date.now().toString(36),
+
+        title:title,
+
+        url:url,
+
+        courseId:
+
+            courseId,
+
+        course:
+            course
+                ? course.name
+                : "",
+
+        subject:
+            document
+                .getElementById(
+                    "videoSubject"
+                )
+                .value
+                .trim(),
+
+        chapter:
+            document
+                .getElementById(
+                    "videoChapter"
+                )
+                .value
+                .trim(),
+
+        date:
+            document
+                .getElementById(
+                    "videoDate"
+                )
+                .value
+            ||
+            new Date()
+                .toISOString()
+                .slice(0,10)
+
+    };
+
+
+    data.videos.push(
+        video
+    );
+
+
+    try{
+
+        await saveData();
+
+
+        document
+            .getElementById(
+                "videoTitle"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "videoURL"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "videoSubject"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "videoChapter"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "videoDate"
+            )
+            .value = "";
+
+
+        await renderAdmin();
+
+        renderHome();
+
+
+        alert(
+            "✅ Video added."
+        );
+
+    }
+    catch(error){
+
+        data.videos =
+            data.videos.filter(
+                x => x.id !== video.id
+            );
+
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   VIDEO EDIT / DELETE
+===================================================== */
+
+async function editVideo(id){
+
+    const item =
+        data.videos.find(
+            x => x.id === id
+        );
+
+
+    if(!item)return;
+
+
+    const title =
+        prompt(
+            "Video title:",
+            item.title
+        );
+
+
+    if(title)
+        item.title =
+            title;
+
+
+    const url =
+        prompt(
+            "YouTube URL:",
+            item.url
+        );
+
+
+    if(url)
+        item.url =
+            url;
+
+
+    const subject =
+        prompt(
+            "Subject:",
+            item.subject || ""
+        );
+
+
+    if(
+        subject !== null
+    )
+        item.subject =
+            subject;
+
+
+    const chapter =
+        prompt(
+            "Chapter:",
+            item.chapter || ""
+        );
+
+
+    if(
+        chapter !== null
+    )
+        item.chapter =
+            chapter;
+
+
+    const date =
+        prompt(
+            "Date YYYY-MM-DD:",
+            item.date || ""
+        );
+
+
+    if(date)
+        item.date =
+            date;
+
+
+    try{
+
+        await saveData();
+
+        await renderAdmin();
+
+        renderHome();
+
+    }
+    catch(error){
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+async function deleteVideo(id){
+
+    if(
+        !confirm(
+            "Delete this video?"
+        )
+    )return;
+
+
+    const old =
+        data.videos;
+
+
+    data.videos =
+        data.videos.filter(
+            x => x.id !== id
+        );
+
+
+    try{
+
+        await saveData();
+
+        await renderAdmin();
+
+        renderHome();
+
+    }
+    catch(error){
+
+        data.videos =
+            old;
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   PDF UPLOAD
+===================================================== */
+
+async function uploadPDFs(){
+
+    const input =
+        document
+            .getElementById(
+                "pdfFiles"
+            );
+
+
+    const files =
+        Array.from(
+            input.files || []
+        );
+
+
+    const courseId =
+        document
+            .getElementById(
+                "pdfCourse"
+            )
+            .value;
+
+
+    if(
+        files.length === 0
+    ){
+
+        alert(
+            "Select one or more PDF files."
+        );
+
+        return;
+
+    }
+
+
+    if(!courseId){
+
+        alert(
+            "Select a course."
+        );
+
+        return;
+
+    }
+
+
+    const course =
+        data.courses.find(
+            x =>
+                x.id ===
+                courseId
+        );
+
+
+    if(!course){
+
+        alert(
+            "Course not found."
+        );
+
+        return;
+
+    }
+
+
+    const status =
+        document
+            .getElementById(
+                "pdfStatus"
+            );
+
+
+    const created = [];
+
+
+    try{
+
+        for(
+            let i=0;
+            i<files.length;
+            i++
+        ){
+
+            const file =
+                files[i];
+
+
+            if(
+                file.size >
+                4 * 1024 * 1024
+            ){
+
+                throw new Error(
+                    `${file.name} is larger than 4 MB.`
+                );
+
+            }
+
+
+            status.textContent =
+                `Uploading ${i+1} of ${files.length}...`;
+
+
+            const path =
+                await uploadFile(
+                    file,
+                    "site/pdfs"
+                );
+
+
+            const pdf = {
+
+                id:
+                    Date.now()
+                    .toString(36)
+                    +
+                    "-" +
+                    i,
+
+                name:
+                    file.name,
+
+                path:
+                    path,
+
+                courseId:
+                    courseId,
+
+                course:
+                    course.name,
+
+                subject:
+                    document
+                        .getElementById(
+                            "pdfSubject"
+                        )
+                        .value
+                        .trim(),
+
+                chapter:
+                    document
+                        .getElementById(
+                            "pdfChapter"
+                        )
+                        .value
+                        .trim(),
+
+                date:
+                    document
+                        .getElementById(
+                            "pdfDate"
+                        )
+                        .value
+                    ||
+                    new Date()
+                        .toISOString()
+                        .slice(0,10)
+
+            };
+
+
+            created.push(
+                pdf
+            );
+
+        }
+
+
+        data.pdfs.push(
+            ...created
+        );
+
+
+        status.textContent =
+            "Saving content...";
+
+
+        await saveData();
+
+
+        input.value = "";
+
+
+        document
+            .getElementById(
+                "pdfSubject"
+            )
+            .value = "";
+
+
+        document
+            .getElementById(
+                "pdfChapter"
+            )
+            .value = "";
+
+
+        document
+            .getElementById(
+                "pdfDate"
+            )
+            .value = "";
+
+
+        status.textContent =
+            `${created.length} PDF(s) uploaded successfully.`;
+
+
+        await renderAdmin();
+
+        renderHome();
+
+
+        alert(
+            `✅ ${created.length} PDF(s) uploaded.`
+        );
+
+    }
+    catch(error){
+
+        /*
+          If saving metadata failed,
+          remove uploaded files.
+        */
+
+        for(
+            const pdf of created
+        ){
+
+            await deleteRemoteFile(
+                pdf.path
+            );
+
+        }
+
+
+        data.pdfs =
+            data.pdfs.filter(
+                pdf =>
+                    !created.some(
+                        x =>
+                            x.id ===
+                            pdf.id
+                    )
+            );
+
+
+        status.textContent =
+            "";
+
+
+        alert(
+            "PDF upload failed.\n\n" +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   PDF EDIT / DELETE
+===================================================== */
+
+async function editPDF(id){
+
+    const item =
+        data.pdfs.find(
+            x => x.id === id
+        );
+
+
+    if(!item)return;
+
+
+    const name =
+        prompt(
+            "PDF name:",
+            item.name
+        );
+
+
+    if(name)
+        item.name =
+            name;
+
+
+    const subject =
+        prompt(
+            "Subject:",
+            item.subject || ""
+        );
+
+
+    if(
+        subject !== null
+    )
+        item.subject =
+            subject;
+
+
+    const chapter =
+        prompt(
+            "Chapter:",
+            item.chapter || ""
+        );
+
+
+    if(
+        chapter !== null
+    )
+        item.chapter =
+            chapter;
+
+
+    const date =
+        prompt(
+            "Date YYYY-MM-DD:",
+            item.date || ""
+        );
+
+
+    if(date)
+        item.date =
+            date;
+
+
+    try{
+
+        await saveData();
+
+        await renderAdmin();
+
+        renderHome();
+
+    }
+    catch(error){
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+async function deletePDF(id){
+
+    if(
+        !confirm(
+            "Delete this PDF from StudyNest and GitHub?"
+        )
+    )return;
+
+
+    const item =
+        data.pdfs.find(
+            x => x.id === id
+        );
+
+
+    if(!item)return;
+
+
+    const old =
+        data.pdfs;
+
+
+    data.pdfs =
+        data.pdfs.filter(
+            x => x.id !== id
+        );
+
+
+    try{
+
+        await saveData();
+
+
+        await deleteRemoteFile(
+            item.path
+        );
+
+
+        await renderAdmin();
+
+        renderHome();
+
+    }
+    catch(error){
+
+        data.pdfs =
+            old;
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   TOPPER
+===================================================== */
+
+async function addTopper(){
+
+    const name =
+        document
+            .getElementById(
+                "topperName"
+            )
+            .value
+            .trim();
+
+
+    const marks =
+        document
+            .getElementById(
+                "topperMarks"
+            )
+            .value
+            .trim();
+
+
+    if(
+        !name ||
+        !marks
+    ){
+
+        alert(
+            "Enter student name and marks."
+        );
+
+        return;
+
+    }
+
+
+    let photoPath = "";
+
+
+    const photo =
+        document
+            .getElementById(
+                "topperPhoto"
+            )
+            .files[0];
+
+
+    try{
+
+        if(photo){
+
+            photoPath =
+                await uploadFile(
+                    photo,
+                    "site/images/toppers"
+                );
+
+        }
+
+
+        const topper = {
+
+            id:
+                Date.now().toString(36),
+
+            name:name,
+
+            marks:marks,
+
+            date:
+                document
+                    .getElementById(
+                        "topperDate"
+                    )
+                    .value
+                ||
+                new Date()
+                    .toISOString()
+                    .slice(0,10),
+
+            photo:
+                photoPath
+
+        };
+
+
+        data.toppers.push(
+            topper
+        );
+
+
+        await saveData();
+
+
+        document
+            .getElementById(
+                "topperName"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "topperMarks"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "topperDate"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "topperPhoto"
+            )
+            .value = "";
+
+
+        await renderAdmin();
+
+        renderHome();
+
+
+        alert(
+            "✅ Topper added."
+        );
+
+    }
+    catch(error){
+
+        if(photoPath){
+
+            await deleteRemoteFile(
+                photoPath
+            );
+
+        }
+
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+async function editTopper(id){
+
+    const item =
+        data.toppers.find(
+            x => x.id === id
+        );
+
+
+    if(!item)return;
+
+
+    const name =
+        prompt(
+            "Student name:",
+            item.name
+        );
+
+
+    if(name)
+        item.name =
+            name;
+
+
+    const marks =
+        prompt(
+            "Marks:",
+            item.marks
+        );
+
+
+    if(marks)
+        item.marks =
+            marks;
+
+
+    const date =
+        prompt(
+            "Date YYYY-MM-DD:",
+            item.date || ""
+        );
+
+
+    if(date)
+        item.date =
+            date;
+
+
+    try{
+
+        await saveData();
+
+        await renderAdmin();
+
+        renderHome();
+
+    }
+    catch(error){
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+async function deleteTopper(id){
+
+    if(
+        !confirm(
+            "Delete this topper?"
+        )
+    )return;
+
+
+    const item =
+        data.toppers.find(
+            x =>
+                x.id === id
+        );
+
+
+    const old =
+        data.toppers;
+
+
+    data.toppers =
+        data.toppers.filter(
+            x =>
+                x.id !== id
+        );
+
+
+    try{
+
+        await saveData();
+
+
+        if(
+            item &&
+            item.photo
+        ){
+
+            await deleteRemoteFile(
+                item.photo
+            );
+
+        }
+
+
+        await renderAdmin();
+
+        renderHome();
+
+    }
+    catch(error){
+
+        data.toppers =
+            old;
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ADMIN RENDER
+===================================================== */
+
+async function renderAdmin(){
+
+    loadCourseSelects();
+
+
+    document
+        .getElementById(
+            "courseList"
+        )
+        .innerHTML =
+
+        data.courses.length
+
+        ?
+
+        data.courses
+            .map(
+                c => `
+
+                    <div
+                        class="admin-item">
+
+                        <strong>
+
+                            ${escapeHtml(
+                                c.icon ||
+                                "📚"
+                            )}
+
+                            ${escapeHtml(
+                                c.name
+                            )}
+
+                        </strong>
+
+                        <small>
+
+                            ${escapeHtml(
+                                c.description ||
+                                ""
+                            )}
+
+                        </small>
+
+                        <div
+                            class="actions">
+
+                            <button
+                                class="small edit"
+                                onclick="editCourse('${c.id}')">
+
+                                Edit
+
+                            </button>
+
+                            <button
+                                class="small delete"
+                                onclick="deleteCourse('${c.id}')">
+
+                                Delete
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `
+            )
+            .join("")
+
+        :
+
+        "<small>No courses yet.</small>";
+
+
+    document
+        .getElementById(
+            "videoList"
+        )
+        .innerHTML =
+
+        data.videos.length
+
+        ?
+
+        data.videos
+            .map(
+                v => `
+
+                    <div
+                        class="admin-item">
+
+                        <strong>
+
+                            🎬
+                            ${escapeHtml(
+                                v.title
+                            )}
+
+                        </strong>
+
+                        <small>
+
+                            Course:
+                            ${escapeHtml(
+                                v.course ||
+                                ""
+                            )}
+
+                            <br>
+
+                            Chapter:
+                            ${escapeHtml(
+                                v.chapter ||
+                                ""
+                            )}
+
+                            <br>
+
+                            Date:
+                            ${formatDate(
+                                v.date
+                            )}
+
+                        </small>
+
+                        <div
+                            class="actions">
+
+                            <button
+                                class="small edit"
+                                onclick="editVideo('${v.id}')">
+
+                                Edit
+
+                            </button>
+
+                            <button
+                                class="small delete"
+                                onclick="deleteVideo('${v.id}')">
+
+                                Delete
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `
+            )
+            .join("")
+
+        :
+
+        "<small>No videos yet.</small>";
+
+
+    document
+        .getElementById(
+            "pdfList"
+        )
+        .innerHTML =
+
+        data.pdfs.length
+
+        ?
+
+        data.pdfs
+            .map(
+                p => `
+
+                    <div
+                        class="admin-item">
+
+                        <strong>
+
+                            📕
+                            ${escapeHtml(
+                                p.name
+                            )}
+
+                        </strong>
+
+                        <small>
+
+                            Course:
+                            ${escapeHtml(
+                                p.course ||
+                                ""
+                            )}
+
+                            <br>
+
+                            Subject:
+                            ${escapeHtml(
+                                p.subject ||
+                                ""
+                            )}
+
+                            <br>
+
+                            Chapter:
+                            ${escapeHtml(
+                                p.chapter ||
+                                ""
+                            )}
+
+                            <br>
+
+                            Date:
+                            ${formatDate(
+                                p.date
+                            )}
+
+                        </small>
+
+                        <div
+                            class="actions">
+
+                            <button
+                                class="small edit"
+                                onclick="editPDF('${p.id}')">
+
+                                Edit
+
+                            </button>
+
+                            <button
+                                class="small delete"
+                                onclick="deletePDF('${p.id}')">
+
+                                Delete
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `
+            )
+            .join("")
+
+        :
+
+        "<small>No PDFs yet.</small>";
+
+
+    document
+        .getElementById(
+            "topperList"
+        )
+        .innerHTML =
+
+        data.toppers.length
+
+        ?
+
+        data.toppers
+            .map(
+                t => `
+
+                    <div
+                        class="admin-item">
+
+                        <strong>
+
+                            🏆
+                            ${escapeHtml(
+                                t.name
+                            )}
+
+                        </strong>
+
+                        <small>
+
+                            Marks:
+                            ${escapeHtml(
+                                t.marks
+                            )}
+
+                            <br>
+
+                            Date:
+                            ${formatDate(
+                                t.date
+                            )}
+
+                        </small>
+
+                        <div
+                            class="actions">
+
+                            <button
+                                class="small edit"
+                                onclick="editTopper('${t.id}')">
+
+                                Edit
+
+                            </button>
+
+                            <button
+                                class="small delete"
+                                onclick="deleteTopper('${t.id}')">
+
+                                Delete
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `
+            )
+            .join("")
+
+        :
+
+        "<small>No toppers yet.</small>";
+
+}
+
+
+/* =====================================================
+   HOME RENDER
+===================================================== */
+
+function publicFileUrl(path){
+
+    return (
+        RAW_BASE +
+        "/" +
+        String(path)
+            .replace(/^\/+/, "")
+            .split("/")
+            .map(
+                part =>
+                    encodeURIComponent(part)
+            )
+            .join("/")
+    );
+
+}
+
+
+function renderHome(){
+
+    const courses =
+        data.courses || [];
+
+
+    const videos =
+        data.videos || [];
+
+
+    const pdfs =
+        data.pdfs || [];
+
+
+    const toppers =
+        data.toppers || [];
+
+
+    /* COURSES */
+
+    document
+        .getElementById(
+            "coursesHome"
+        )
+        .innerHTML =
+
+        courses.length
+
+        ?
+
+        courses.map(
+            (c,i)=>`
+
+                <div
+                    class="card"
+                    onclick="openCourse('${c.id}')">
+
+                    <div class="card-top">
+
+                        ${escapeHtml(
+                            c.icon ||
+                            [
+                                "📘",
+                                "📗",
+                                "📙",
+                                "📕",
+                                "💻"
+                            ][i % 5]
+                        )}
+
+                    </div>
+
+                    <div
+                        class="card-body">
+
+                        <h3>
+                            ${escapeHtml(
+                                c.name
+                            )}
+                        </h3>
+
+                        <p>
+                            ${escapeHtml(
+                                c.description ||
+                                "Open course"
+                            )}
+                        </p>
+
+                        <div class="meta">
+
+                            <span
+                                class="badge blue-badge">
+
+                                COURSE
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `
+        ).join("")
+
+        :
+
+        `
+            <div class="empty">
+                No courses yet.
+            </div>
+        `;
+
+
+    /* VIDEOS */
+
+    const sortedVideos =
+        [...videos].sort(
+            (a,b)=>
+                new Date(
+                    b.date || 0
+                )
+                -
+                new Date(
+                    a.date || 0
+                )
+        );
+
+
+    document
+        .getElementById(
+            "videosHome"
+        )
+        .innerHTML =
+
+        sortedVideos.length
+
+        ?
+
+        sortedVideos.map(
+            v => `
+
+                <div
+                    class="card"
+                    onclick="openVideo('${escapeHtml(v.url)}')">
+
+                    <div class="card-top">
+
+                        <div class="play">
+                            ▶
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <h3>
+                            ${escapeHtml(
+                                v.title
+                            )}
+                        </h3>
+
+                        <p>
+
+                            ${escapeHtml(
+                                v.subject ||
+                                ""
+                            )}
+
+                            ${
+                                v.chapter
+                                ?
+                                " • " +
+                                escapeHtml(
+                                    v.chapter
+                                )
+                                :
+                                ""
+                            }
+
+                        </p>
+
+                        <div class="meta">
+
+                            <span
+                                class="badge red-badge">
+
+                                ${escapeHtml(
+                                    v.course ||
+                                    "VIDEO"
+                                )}
+
+                            </span>
+
+                            <span
+                                class="badge yellow-badge">
+
+                                ${formatDate(
+                                    v.date
+                                )}
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `
+        ).join("")
+
+        :
+
+        `
+            <div class="empty">
+                No videos yet.
+            </div>
+        `;
+
+
+    /* PDFS */
+
+    const sortedPDFs =
+        [...pdfs].sort(
+            (a,b)=>
+                new Date(
+                    b.date || 0
+                )
+                -
+                new Date(
+                    a.date || 0
+                )
+        );
+
+
+    document
+        .getElementById(
+            "pdfsHome"
+        )
+        .innerHTML =
+
+        sortedPDFs.length
+
+        ?
+
+        sortedPDFs.map(
+            (p,i)=>`
+
+                <div
+                    class="card"
+                    onclick="openPDF('${p.id}')">
+
+                    <span class="open-pdf">
+                        OPEN PDF
+                    </span>
+
+                    <div class="card-top">
+
+                        ${
+                            [
+                                "📕",
+                                "📘",
+                                "📗",
+                                "📙"
+                            ][i % 4]
+                        }
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <h3>
+                            ${escapeHtml(
+                                p.name
+                            )}
+                        </h3>
+
+                        <p>
+
+                            ${escapeHtml(
+                                p.subject ||
+                                ""
+                            )}
+
+                            ${
+                                p.chapter
+                                ?
+                                " • " +
+                                escapeHtml(
+                                    p.chapter
+                                )
+                                :
+                                ""
+                            }
+
+                        </p>
+
+                        <div class="meta">
+
+                            <span
+                                class="badge red-badge">
+
+                                ${escapeHtml(
+                                    p.course ||
+                                    "PDF"
+                                )}
+
+                            </span>
+
+                            <span
+                                class="badge yellow-badge">
+
+                                ${formatDate(
+                                    p.date
+                                )}
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `
+        ).join("")
+
+        :
+
+        `
+            <div class="empty">
+                No PDFs yet.
+            </div>
+        `;
+
+
+    /* TOPPERS */
+
+    document
+        .getElementById(
+            "toppersHome"
+        )
+        .innerHTML =
+
+        toppers.length
+
+        ?
+
+        toppers.map(
+            (t,i)=>{
+
+                const image =
+                    t.photo
+
+                    ?
+
+                    `
+                        <img
+                            class="topper-photo"
+                            src="${publicFileUrl(
+                                t.photo
+                            )}">
+                    `
+
+                    :
+
+                    `
+
+                        <div
+                            style="
+                                font-size:55px;
+                            ">
+
+                            ${
+                                [
+                                    "🏆",
+                                    "🥇",
+                                    "🥈",
+                                    "🥉"
+                                ][
+                                    i % 4
+                                ]
+                            }
+
+                        </div>
+
+                    `;
+
+
+                return `
+
+                    <div
+                        class="card"
+                        onclick="showTopper('${t.id}')">
+
+                        <div class="card-top">
+
+                            ${image}
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <h3>
+                                ${escapeHtml(
+                                    t.name
+                                )}
+                            </h3>
+
+                            <p>
+
+                                Marks:
+                                <strong>
+                                    ${escapeHtml(
+                                        t.marks
+                                    )}
+                                </strong>
+
+                            </p>
+
+                            <div class="meta">
+
+                                <span
+                                    class="badge green-badge">
+
+                                    TOPPER
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("")
+
+        :
+
+        `
+            <div class="empty">
+                No toppers yet.
+            </div>
+        `;
+
+
+    /* LATEST */
+
+    const latest = [
+
+        ...videos.map(
+            x => ({
+                ...x,
+                kind:"video"
+            })
+        ),
+
+        ...pdfs.map(
+            x => ({
+                ...x,
+                kind:"pdf"
+            })
+        ),
+
+        ...toppers.map(
+            x => ({
+                ...x,
+                kind:"topper"
+            })
+        )
+
+    ]
+    .sort(
+        (a,b)=>
+            new Date(
+                b.date || 0
+            )
+            -
+            new Date(
+                a.date || 0
+            )
+    )
+    .slice(0,15);
+
+
+    document
+        .getElementById(
+            "latestHome"
+        )
+        .innerHTML =
+
+        latest.length
+
+        ?
+
+        latest.map(
+            item => {
+
+                if(
+                    item.kind ===
+                    "video"
+                ){
+
+                    return `
+
+                        <div
+                            class="card"
+                            onclick="openVideo('${escapeHtml(item.url)}')">
+
+                            <div class="card-top">
+                                🎬
+                            </div>
+
+                            <div class="card-body">
+
+                                <h3>
+                                    ${escapeHtml(
+                                        item.title
+                                    )}
+                                </h3>
+
+                                <p>
+                                    Latest video
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+
+
+                if(
+                    item.kind ===
+                    "pdf"
+                ){
+
+                    return `
+
+                        <div
+                            class="card"
+                            onclick="openPDF('${item.id}')">
+
+                            <div class="card-top">
+                                📕
+                            </div>
+
+                            <div class="card-body">
+
+                                <h3>
+                                    ${escapeHtml(
+                                        item.name
+                                    )}
+                                </h3>
+
+                                <p>
+                                    Study PDF
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+
+
+                return `
+
+                    <div
+                        class="card"
+                        onclick="showTopper('${item.id}')">
+
+                        <div class="card-top">
+                            🏆
+                        </div>
+
+                        <div class="card-body">
+
+                            <h3>
+                                ${escapeHtml(
+                                    item.name
+                                )}
+                            </h3>
+
+                            <p>
+                                Marks:
+                                ${escapeHtml(
+                                    item.marks
+                                )}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("")
+
+        :
+
+        `
+            <div class="empty">
+                Nothing added yet.
+            </div>
+        `;
+
+}
+
+
+/* =====================================================
+   COURSE CLICK
+===================================================== */
+
+function openCourse(courseId){
+
+    const hasPDF =
+        data.pdfs.some(
+            x =>
+                x.courseId ===
+                courseId
+        );
+
+
+    const hasVideo =
+        data.videos.some(
+            x =>
+                x.courseId ===
+                courseId
+        );
+
+
+    if(hasPDF){
+
+        document
+            .getElementById(
+                "pdfSection"
+            )
+            .scrollIntoView({
+                behavior:"smooth"
+            });
+
+    }
+    else if(hasVideo){
+
+        document
+            .getElementById(
+                "videoSection"
+            )
+            .scrollIntoView({
+                behavior:"smooth"
+            });
+
+    }
+    else{
+
+        alert(
+            "No content has been added to this course yet."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   PDF OPEN
+===================================================== */
+
+function openPDF(id){
+
+    const pdf =
+        data.pdfs.find(
+            x => x.id === id
+        );
+
+
+    if(!pdf){
+
+        alert(
+            "PDF not found."
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById(
+            "pdfTitle"
+        )
+        .textContent =
+        pdf.name;
+
+
+    document
+        .getElementById(
+            "pdfViewer"
+        )
+        .src =
+        publicFileUrl(
+            pdf.path
+        );
+
+
+    document
+        .getElementById(
+            "pdfModal"
+        )
+        .classList
+        .add("active");
+
+}
+
+
+function closePDF(){
+
+    document
+        .getElementById(
+            "pdfModal"
+        )
+        .classList
+        .remove("active");
+
+
+    document
+        .getElementById(
+            "pdfViewer"
+        )
+        .src = "";
+
+}
+
+
+/* =====================================================
+   VIDEO OPEN
+===================================================== */
+
+function youtubeEmbed(url){
+
+    try{
+
+        const u =
+            new URL(url);
+
+
+        if(
+            u.hostname.includes(
+                "youtu.be"
+            )
+        ){
+
+            return `
+                https://www.youtube.com/embed/
+                ${u.pathname.replace("/", "")}
+            `.replace(/\s+/g,"");
+
+        }
+
+
+        if(
+            u.hostname.includes(
+                "youtube.com"
+            )
+        ){
+
+            const id =
+                u.searchParams.get(
+                    "v"
+                );
+
+
+            if(id){
+
+                return (
+                    "https://www.youtube.com/embed/" +
+                    id
+                );
+
+            }
+
+
+            const parts =
+                u.pathname.split("/");
+
+
+            const embedIndex =
+                parts.indexOf(
+                    "embed"
+                );
+
+
+            if(
+                embedIndex !== -1 &&
+                parts[embedIndex + 1]
+            ){
+
+                return (
+                    "https://www.youtube.com/embed/" +
+                    parts[embedIndex + 1]
+                );
+
+            }
+
+        }
+
+    }
+    catch{
+
+    }
+
+
+    return url;
+
+}
+
+
+function openVideo(url){
+
+    const embed =
+        youtubeEmbed(url);
+
+
+    document
+        .getElementById(
+            "videoTitleModal"
+        )
+        .textContent =
+        "Study Video";
+
+
+    document
+        .getElementById(
+            "videoViewer"
+        )
+        .src =
+        embed;
+
+
+    document
+        .getElementById(
+            "videoModal"
+        )
+        .classList
+        .add("active");
+
+}
+
+
+function closeVideo(){
+
+    document
+        .getElementById(
+            "videoModal"
+        )
+        .classList
+        .remove("active");
+
+
+    document
+        .getElementById(
+            "videoViewer"
+        )
+        .src = "";
+
+}
+
+
+/* =====================================================
+   TOPPER
+===================================================== */
+
+function showTopper(id){
+
+    const topper =
+        data.toppers.find(
+            x =>
+                x.id ===
+                id
+        );
+
+
+    if(!topper)return;
+
+
+    let image =
+        "";
+
+
+    if(topper.photo){
+
+        image = `
+
+            <img
+                src="${publicFileUrl(
+                    topper.photo
+                )}"
+                style="
+                    width:130px;
+                    height:130px;
+                    border-radius:50%;
+                    object-fit:cover;
+                    border:5px solid #ffd43b;
+                    margin:15px;
+                ">
+
+        `;
+
+    }
+    else{
+
+        image = `
+
+            <div
+                style="
+                    font-size:80px;
+                    margin:20px;
+                ">
+
+                🏆
+
+            </div>
+
+        `;
+
+    }
+
+
+    document
+        .getElementById(
+            "topperModalBody"
+        )
+        .innerHTML = `
+
+            ${image}
+
+            <h2>
+                ${escapeHtml(
+                    topper.name
+                )}
+            </h2>
+
+            <br>
+
+            <p>
+                <strong>
+                    Marks:
+                </strong>
+
+                ${escapeHtml(
+                    topper.marks
+                )}
+
+            </p>
+
+            <p>
+                <strong>
+                    Date:
+                </strong>
+
+                ${formatDate(
+                    topper.date
+                )}
+
+            </p>
+
+        `;
+
+
+    document
+        .getElementById(
+            "topperModal"
+        )
+        .classList
+        .add("active");
+
+}
+
+
+function closeTopper(){
+
+    document
+        .getElementById(
+            "topperModal"
+        )
+        .classList
+        .remove("active");
+
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function escapeHtml(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function formatDate(value){
+
+    if(!value)
+        return "No date";
+
+
+    const d =
+        new Date(value);
+
+
+    if(
+        Number.isNaN(
+            d.getTime()
+        )
+    )
+        return value;
+
+
+    return d.toLocaleDateString(
+        "en-IN",
+        {
+            day:"2-digit",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   MODAL CLICKS
+===================================================== */
+
+document
+    .getElementById(
+        "pdfModal"
+    )
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(
+                e.target ===
+                this
+            ){
+
+                closePDF();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "videoModal"
+    )
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(
+                e.target ===
+                this
+            ){
+
+                closeVideo();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "topperModal"
+    )
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(
+                e.target ===
+                this
+            ){
+
+                closeTopper();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "loginOverlay"
+    )
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(
+                e.target ===
+                this
+            ){
+
+                closeLogin();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "adminPassword"
+    )
+    .addEventListener(
+        "keydown",
+        function(e){
+
+            if(
+                e.key ===
+                "Enter"
+            ){
+
+                loginAdmin();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadData();
+
+</script>
+
+</body>
+</html>
