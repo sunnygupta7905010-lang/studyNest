@@ -2541,73 +2541,34 @@ function closeLogin(){
 
 }
 
+async function adminLogin() {
+    const adminPassword = document.getElementById("adminPassword").value.trim();
 
-async function loginAdmin(){
-
-    const password =
-        document
-            .getElementById(
-                "adminPassword"
-            )
-            .value;
-
-
-    try{
-
-        await apiRequest({
-
-            action:"login",
-
-            password:password
-
-        });
-
-
-        adminPassword =
-            password;
-
-
-        closeLogin();
-
-
-        document
-            .getElementById(
-                "mainWebsite"
-            )
-            .style
-            .display =
-            "none";
-
-
-        document
-            .getElementById(
-                "adminPanel"
-            )
-            .style
-            .display =
-            "block";
-
-
-        await loadData();
-
-        await renderAdmin();
-
-
-    }
-    catch(error){
-
-        document
-            .getElementById(
-                "loginError"
-            )
-            .textContent =
-            "❌ " +
-            error.message;
-
+    if (!adminPassword) {
+        alert("Enter admin password");
+        return;
     }
 
+    const response = await fetch(ADMIN_API, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            action: "login",
+            password: adminPassword
+        })
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+        alert("Login successful");
+        // open admin panel here
+    } else {
+        alert(result.error || "Wrong password");
+    }
 }
-
 
 function logout(){
 
