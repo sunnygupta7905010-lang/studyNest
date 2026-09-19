@@ -1,0 +1,3 @@
+[build]
+  publish = "site"
+  functions = "netlify/functions"
