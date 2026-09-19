@@ -1,63 +1,63 @@
-
 const OWNER = process.env.GITHUB_OWNER || "";
 const REPO = process.env.GITHUB_REPO || "";
 const BRANCH = process.env.GITHUB_BRANCH || "main";
 const TOKEN = process.env.GITHUB_TOKEN || "";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
 
-const headers = {
-  "Content-Type": "application/json",
+const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "Content-Type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS"
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS"
 };
 
-function json(statusCode, body) {
-  return {
-    statusCode,
-    headers,
-    body: JSON.stringify(body)
-  };
+function respond(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      "Content-Type": "application/json",
+      ...CORS_HEADERS
+    }
+  });
 }
 
-async function github(path, options = {}) {
+async function githubRequest(path, options = {}) {
   if (!OWNER || !REPO || !TOKEN) {
     throw new Error(
       "GitHub environment variables are not configured in Netlify."
     );
   }
 
-  const response = await fetch(
-    `https://api.github.com/repos/${encodeURIComponent(
-      OWNER
-    )}/${encodeURIComponent(REPO)}/contents/${path}`,
-    {
-      ...options,
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-        Accept: "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28",
-        "Content-Type": "application/json",
-        ...(options.headers || {})
-      }
+  const url =
+    `https://api.github.com/repos/` +
+    `${encodeURIComponent(OWNER)}/` +
+    `${encodeURIComponent(REPO)}/contents/${path}`;
+
+  const response = await fetch(url, {
+    ...options,
+    headers: {
+      Authorization: `Bearer ${TOKEN}`,
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+      "Content-Type": "application/json",
+      ...(options.headers || {})
     }
-  );
+  });
 
   const text = await response.text();
 
   let data;
 
   try {
-    data = JSON.parse(text);
+    data = text ? JSON.parse(text) : {};
   } catch {
     data = {
-      message: text || "GitHub request failed"
+      message: text || "GitHub returned an invalid response."
     };
   }
 
   if (!response.ok) {
     throw new Error(
-      data.message || `GitHub API error (${response.status})`
+      data.message || `GitHub API error: ${response.status}`
     );
   }
 
@@ -66,45 +66,48 @@ async function github(path, options = {}) {
 
 async function getFile(path) {
   try {
-    return await github(encodeURI(path));
-  } catch (e) {
-    if (/404/.test(e.message) || /Not Found/i.test(e.message)) {
+    return await githubRequest(path);
+  } catch (error) {
+    if (
+      error.message.includes("Not Found") ||
+      error.message.includes("404")
+    ) {
       return null;
     }
 
-    throw e;
+    throw error;
   }
 }
 
-async function putFile(path, contentBase64, message) {
+async function saveGitHubFile(path, base64Content, message) {
   const existing = await getFile(path);
 
   const body = {
     message,
-    content: contentBase64,
+    content: base64Content,
     branch: BRANCH
   };
 
-  if (existing?.sha) {
+  if (existing && existing.sha) {
     body.sha = existing.sha;
   }
 
-  return github(encodeURI(path), {
+  return githubRequest(path, {
     method: "PUT",
     body: JSON.stringify(body)
   });
 }
 
-async function deleteGitHubFile(path, message) {
+async function removeGitHubFile(path, message) {
   const existing = await getFile(path);
 
-  if (!existing?.sha) {
+  if (!existing || !existing.sha) {
     return {
       skipped: true
     };
   }
 
-  return github(encodeURI(path), {
+  return githubRequest(path, {
     method: "DELETE",
     body: JSON.stringify({
       message,
@@ -117,27 +120,40 @@ async function deleteGitHubFile(path, message) {
 export default async (request) => {
   // CORS preflight
   if (request.method === "OPTIONS") {
-    return {
-      statusCode: 204,
-      headers,
-      body: ""
-    };
+    return new Response(null, {
+      status: 204,
+      headers: CORS_HEADERS
+    });
   }
 
   // Health check
   if (request.method === "GET") {
-    return json(200, {
+    return respond({
       success: true,
-      service: "StudyNest admin function"
+      service: "StudyNest admin function",
+      githubConfigured: Boolean(OWNER && REPO && TOKEN),
+      passwordConfigured: Boolean(ADMIN_PASSWORD)
     });
   }
 
-  // Only POST is allowed for admin actions
   if (request.method !== "POST") {
-    return json(405, {
-      success: false,
-      error: "Method not allowed"
-    });
+    return respond(
+      {
+        success: false,
+        error: "Method not allowed"
+      },
+      405
+    );
+  }
+
+  if (!ADMIN_PASSWORD) {
+    return respond(
+      {
+        success: false,
+        error: "ADMIN_PASSWORD is not configured in Netlify."
+      },
+      500
+    );
   }
 
   let body;
@@ -145,163 +161,210 @@ export default async (request) => {
   try {
     body = await request.json();
   } catch {
-    return json(400, {
-      success: false,
-      error: "Invalid JSON request"
-    });
+    return respond(
+      {
+        success: false,
+        error: "Invalid JSON request."
+      },
+      400
+    );
   }
 
-  const { action, password } = body || {};
+  const action = body?.action;
+  const password = body?.password;
 
-  // Password must exist in Netlify
-  if (!ADMIN_PASSWORD) {
-    return json(500, {
-      success: false,
-      error: "ADMIN_PASSWORD is not configured in Netlify."
-    });
-  }
-
+  // -------------------------
   // LOGIN
+  // -------------------------
   if (action === "login") {
     if (
       typeof password !== "string" ||
       password !== ADMIN_PASSWORD
     ) {
-      return json(401, {
-        success: false,
-        error: "Wrong password"
-      });
+      return respond(
+        {
+          success: false,
+          error: "Wrong password"
+        },
+        401
+      );
     }
 
-    return json(200, {
-      success: true
+    return respond({
+      success: true,
+      message: "Login successful"
     });
   }
 
-  // All other admin actions require the password
+  // -------------------------
+  // AUTHORIZE ADMIN ACTIONS
+  // -------------------------
   if (
     typeof password !== "string" ||
     password !== ADMIN_PASSWORD
   ) {
-    return json(401, {
-      success: false,
-      error: "Unauthorized"
-    });
+    return respond(
+      {
+        success: false,
+        error: "Unauthorized"
+      },
+      401
+    );
   }
 
   try {
-    // SAVE CONTENT DATA
+    // -------------------------
+    // SAVE CONTENT.JSON
+    // -------------------------
     if (action === "saveData") {
-      const data = body.data;
-
-      if (!data || typeof data !== "object") {
-        return json(400, {
-          success: false,
-          error: "Invalid content data"
-        });
+      if (!body.data || typeof body.data !== "object") {
+        return respond(
+          {
+            success: false,
+            error: "Invalid content data."
+          },
+          400
+        );
       }
 
-      const encoded = Buffer.from(
-        JSON.stringify(data, null, 2) + "\n",
+      const jsonText =
+        JSON.stringify(body.data, null, 2) + "\n";
+
+      const base64Content = Buffer.from(
+        jsonText,
         "utf8"
       ).toString("base64");
 
-      await putFile(
+      await saveGitHubFile(
         "site/content.json",
-        encoded,
+        base64Content,
         "Update StudyNest content"
       );
 
-      return json(200, {
-        success: true
+      return respond({
+        success: true,
+        message: "Content saved successfully."
       });
     }
 
-    // UPLOAD PDF / TOPPER IMAGE
+    // -------------------------
+    // UPLOAD FILE
+    // -------------------------
     if (action === "uploadFile") {
       const path = String(body.path || "");
       const base64 = String(body.base64 || "");
-      const message = String(
-        body.message || "Upload StudyNest file"
-      );
 
       if (!path || !base64) {
-        return json(400, {
-          success: false,
-          error: "Missing file path or file data"
-        });
+        return respond(
+          {
+            success: false,
+            error: "Missing file path or file data."
+          },
+          400
+        );
       }
 
-      // Only allow these folders
-      if (
-        !path.startsWith("site/pdfs/") &&
-        !path.startsWith("site/images/toppers/")
-      ) {
-        return json(400, {
-          success: false,
-          error: "File path is not allowed"
-        });
+      // Only allow StudyNest folders
+      const allowed =
+        path.startsWith("site/pdfs/") ||
+        path.startsWith("site/images/toppers/");
+
+      if (!allowed) {
+        return respond(
+          {
+            success: false,
+            error: "File path is not allowed."
+          },
+          400
+        );
       }
 
-      // Keep uploads under Netlify Function payload limit
-      const approxBytes = Math.floor(base64.length * 0.75);
+      // Approximate decoded file size
+      const estimatedBytes =
+        Math.floor(base64.length * 0.75);
 
-      if (approxBytes > 4 * 1024 * 1024) {
-        return json(413, {
-          success: false,
-          error: "File is too large. Keep it under 4 MB."
-        });
+      if (estimatedBytes > 4 * 1024 * 1024) {
+        return respond(
+          {
+            success: false,
+            error: "File is too large. Keep it under 4 MB."
+          },
+          413
+        );
       }
 
-      await putFile(path, base64, message);
+      await saveGitHubFile(
+        path,
+        base64,
+        "Upload StudyNest file"
+      );
 
-      return json(200, {
+      return respond({
         success: true,
         path
       });
     }
 
-    // DELETE PDF / TOPPER IMAGE
+    // -------------------------
+    // DELETE FILE
+    // -------------------------
     if (action === "deleteFile") {
       const path = String(body.path || "");
 
       if (!path) {
-        return json(400, {
-          success: false,
-          error: "Missing file path"
-        });
+        return respond(
+          {
+            success: false,
+            error: "Missing file path."
+          },
+          400
+        );
       }
 
-      if (
-        !path.startsWith("site/pdfs/") &&
-        !path.startsWith("site/images/toppers/")
-      ) {
-        return json(400, {
-          success: false,
-          error: "File path is not allowed"
-        });
+      const allowed =
+        path.startsWith("site/pdfs/") ||
+        path.startsWith("site/images/toppers/");
+
+      if (!allowed) {
+        return respond(
+          {
+            success: false,
+            error: "File path is not allowed."
+          },
+          400
+        );
       }
 
-      await deleteGitHubFile(
+      await removeGitHubFile(
         path,
         "Delete StudyNest file"
       );
 
-      return json(200, {
-        success: true
+      return respond({
+        success: true,
+        message: "File deleted successfully."
       });
     }
 
-    return json(400, {
-      success: false,
-      error: "Unknown action"
-    });
+    // -------------------------
+    // UNKNOWN ACTION
+    // -------------------------
+    return respond(
+      {
+        success: false,
+        error: "Unknown action."
+      },
+      400
+    );
   } catch (error) {
     console.error("StudyNest admin error:", error);
 
-    return json(500, {
-      success: false,
-      error: error.message || "Server error"
-    });
+    return respond(
+      {
+        success: false,
+        error: error.message || "Server error."
+      },
+      500
+    );
   }
 };
