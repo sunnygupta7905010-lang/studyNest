@@ -1,6 +1,6 @@
 {
-  "courses": [],
-  "videos": [],
-  "pdfs": [],
+  "courses": ["Data science", "12/12/2026"],
+  "videos": [""],
+  "pdfs": ["site/pdf/Academic Calendar.pdf"],
   "toppers": []
 }
