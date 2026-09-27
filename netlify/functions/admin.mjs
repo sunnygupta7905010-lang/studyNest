@@ -1,7 +1,13 @@
 const OWNER = process.env.GITHUB_OWNER || "";
 const REPO = process.env.GITHUB_REPO || "";
 const BRANCH = process.env.GITHUB_BRANCH || "main";
-const TOKEN = process.env.GITHUB_TOKEN || "";
+// Prefer a dedicated variable name: Netlify injects its own GITHUB_TOKEN into
+// builds, which can shadow a value you set with that exact name.
+const TOKEN =
+  process.env.STUDYNEST_GITHUB_TOKEN ||
+  process.env.GITHUB_PAT ||
+  process.env.GITHUB_TOKEN ||
+  "";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
 
 const CORS_HEADERS = {
@@ -56,8 +62,26 @@ async function githubRequest(path, options = {}) {
   }
 
   if (!response.ok) {
+    const message = data.message || `GitHub API error: ${response.status}`;
+
+    // GitHub tells us exactly what the token was missing via response headers.
+    const granted = response.headers.get("x-oauth-scopes");
+    const required = response.headers.get("x-accepted-github-permissions");
+    const details = [];
+
+    if (granted) details.push(`token scopes: ${granted}`);
+    if (required) details.push(`required permission(s): ${required}`);
+
+    const isTokenPermission =
+      response.status === 403 &&
+      /not accessible by personal access token/i.test(message);
+
     throw new Error(
-      data.message || `GitHub API error: ${response.status}`
+      details.length
+        ? `${message} (${details.join("; ")})`
+        : isTokenPermission
+          ? `${message} — the GitHub token in Netlify cannot write to ${OWNER}/${REPO}. Give it "Contents: Read and write" and include this repository, then redeploy.`
+          : message
     );
   }
 
@@ -132,7 +156,19 @@ export default async (request) => {
       success: true,
       service: "StudyNest admin function",
       githubConfigured: Boolean(OWNER && REPO && TOKEN),
-      passwordConfigured: Boolean(ADMIN_PASSWORD)
+      passwordConfigured: Boolean(ADMIN_PASSWORD),
+      // Diagnostics only — never expose the token itself.
+      githubTarget: OWNER && REPO ? `${OWNER}/${REPO}@${BRANCH}` : null,
+      tokenKind: TOKEN
+        ? TOKEN.startsWith("github_pat_")
+          ? "fine-grained PAT"
+          : TOKEN.startsWith("ghp_")
+            ? "classic PAT"
+            : TOKEN.startsWith("gh")
+              ? "GitHub App / OAuth token"
+              : "unrecognized"
+        : "missing",
+      tokenLength: TOKEN.length
     });
   }
 

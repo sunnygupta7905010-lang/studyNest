@@ -841,7 +841,7 @@
         function courseName(id) { return content.courses.find(c => c.id === id)?.name || "Unassigned"; }
         function fileUrl(item) {
             if (item?.url) return item.url;
-            if (item?.path && item.path.startsWith("site/")) return "/" + item.path.slice(5);
+            if (item?.path && item.path.startsWith("site/")) return encodeURI("/" + item.path.slice(5));
             return item?.path || "#";
         }
         function sortNewest(a, b) { return String(b.date || "").localeCompare(String(a.date || "")); }
@@ -888,13 +888,13 @@
     </a>`).join("") : `<div class="empty">No videos published yet.</div>`;
 
             $("pdfsGrid").innerHTML = content.pdfs.length ? [...content.pdfs].sort(sortNewest).map(p => `
-    <a class="card" href="${escapeHtmlfileUrl(p)}" target="_blank" rel="noopener noreferrer">
+    <a class="card" href="${escapeHtml(fileUrl(p))}" target="_blank" rel="noopener noreferrer">
       <div class="thumb">📄</div><span class="tag">PDF</span><h3>${escapeHtml(p.name)}</h3>
       <div class="meta">${escapeHtml(courseName(p.courseId))} · ${escapeHtml(p.chapter || "")} ${p.date ? "· " + escapeHtml(niceDate(p.date)) : ""}</div>
     </a>`).join("") : `<div class="empty">No PDFs published yet.</div>`;
 
             $("toppersGrid").innerHTML = content.toppers.length ? [...content.toppers].sort(sortNewest).map(t => `
-    <div class="card"><div style="display:flex;gap:14px;align-items:center">${t.photoUrl || t.photoPath ? `<img class="topper-img" src="${escapeHtmlfileUrl({ url: t.photoUrl, path: t.photoPath })}" alt="">` : `<div class="topper-img" style="display:grid;place-items:center;background:#fff6c7;font-size:2rem">🏆</div>`}<div><span class="tag">TOPPER</span><h3>${escapeHtml(t.name)}</h3><div class="meta">${escapeHtml(t.marks)} ${t.date ? "· " + escapeHtml(niceDate(t.date)) : ""}</div></div></div></div>`).join("") : `<div class="empty">No topper details published yet.</div>`;
+    <div class="card"><div style="display:flex;gap:14px;align-items:center">${t.photoUrl || t.photoPath ? `<img class="topper-img" src="${escapeHtml(fileUrl({ url: t.photoUrl, path: t.photoPath }))}" alt="">` : `<div class="topper-img" style="display:grid;place-items:center;background:#fff6c7;font-size:2rem">🏆</div>`}<div><span class="tag">TOPPER</span><h3>${escapeHtml(t.name)}</h3><div class="meta">${escapeHtml(t.marks)} ${t.date ? "· " + escapeHtml(niceDate(t.date)) : ""}</div></div></div></div>`).join("") : `<div class="empty">No topper details published yet.</div>`;
 
             const latest = [
                 ...content.videos.map(v => ({ kind: "VIDEO", title: v.title, date: v.date, url: youtubeUrl(v.url || "#") })),
@@ -908,7 +908,7 @@
             if (!course) return;
             setTimeout(() => {
                 const pdfs = content.pdfs.filter(p => p.courseId === courseId);
-                $("pdfsGrid").innerHTML = pdfs.length ? pdfs.map(p => `<a class="card" href="${escapeHtmlfileUrl(p)}" target="_blank" rel="noopener noreferrer"><div class="thumb">📄</div><span class="tag">${escapeHtml(course.name)}</span><h3>${escapeHtml(p.name)}</h3><div class="meta">${escapeHtml(p.chapter || "")} · ${escapeHtml(niceDate(p.date || ""))}</div></a>`).join("") : `<div class="empty">No PDFs are available for ${escapeHtml(course.name)} yet.</div>`;
+                $("pdfsGrid").innerHTML = pdfs.length ? pdfs.map(p => `<a class="card" href="${escapeHtml(fileUrl(p))}" target="_blank" rel="noopener noreferrer"><div class="thumb">📄</div><span class="tag">${escapeHtml(course.name)}</span><h3>${escapeHtml(p.name)}</h3><div class="meta">${escapeHtml(p.chapter || "")} · ${escapeHtml(niceDate(p.date || ""))}</div></a>`).join("") : `<div class="empty">No PDFs are available for ${escapeHtml(course.name)} yet.</div>`;
             }, 0);
         }
 

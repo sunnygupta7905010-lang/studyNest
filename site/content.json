@@ -1,0 +1,23 @@
+{
+  "courses": [
+    {
+      "id": "data-science",
+      "name": "Data science",
+      "date": "2026-12-12"
+    }
+  ],
+  "videos": [],
+  "pdfs": [
+    {
+      "id": "academic-calendar",
+      "name": "Academic Calendar",
+      "path": "site/pdf/Academic Calendar.pdf",
+      "url": "",
+      "courseId": "data-science",
+      "chapter": "",
+      "subject": "",
+      "date": "2026-12-12"
+    }
+  ],
+  "toppers": []
+}
