@@ -11,7 +11,17 @@
       "date": "2026-09-27"
     }
   ],
-  "videos": [],
+  "videos": [
+    {
+      "id": "mujbsk8w9gyw5l",
+      "title": "fefg",
+      "url": "https://www.youtube.com/shorts/m5bVLxk_K24",
+      "courseId": "mujbr373jvgqtf",
+      "chapter": "Chapter 1",
+      "subject": "Maths",
+      "date": "2026-09-27"
+    }
+  ],
   "pdfs": [
     {
       "id": "academic-calendar",
